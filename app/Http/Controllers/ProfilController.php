@@ -75,7 +75,7 @@ class ProfilController extends Controller
         // Validasi input
         $request->validate([
             'gambar' => 'nullable|file|mimes:jpeg,png,jpg|max:2048', // Gambar bersifat opsional
-            'deskripsi' => 'required|string', // Deskripsi wajib ada
+            'deskripsi' => 'required|string', // Deskripsi wajib
         ]);
 
         try {
@@ -87,40 +87,37 @@ class ProfilController extends Controller
                 return response()->json(['success' => false, 'message' => 'Profil tidak ditemukan!'], 404);
             }
 
-            // Proses file gambar
             $fileName = $profil->gambar; // Gunakan gambar lama jika tidak ada file baru
             if ($request->hasFile('gambar')) {
                 $image = $request->file('gambar');
 
-                // Hapus gambar lama dari storage jika ada
-                if ($profil->gambar && Storage::disk('public')->exists('img/profil/' . $profil->gambar)) {
-                    Storage::disk('public')->delete('img/profil/' . $profil->gambar);
+                // Hapus gambar lama jika ada
+                if (file_exists(public_path('img/profil/' . $profil->gambar))) {
+                    unlink(public_path('img/profil/' . $profil->gambar));
                 }
 
-                // Buat nama file unik berdasarkan MD5 dan ekstensi file
+                // Buat nama file baru
                 $extension = $image->getClientOriginalExtension();
                 $fileName = md5_file($image->getRealPath()) . '.' . $extension;
-                $folderPath = "img/profil/";
 
-                // Simpan file ke direktori storage/public/img/profil
-                Storage::disk('public')->putFileAs($folderPath, $image, $fileName);
+                // Simpan file baru
+                $image->move(public_path('img/profil/'), $fileName);
             }
 
-            // Buat URL baru untuk gambar
-            $url = asset('storage/img/profil/' . $fileName);
+            // URL baru
+            $url = asset('img/profil/' . $fileName);
 
             // Update data di database
             $profil->update([
-                'gambar' => $fileName, // Nama file baru (atau tetap file lama jika tidak ada gambar baru)
-                'deskripsi' => $request->deskripsi, // Deskripsi baru
-                'url' => $url, // URL baru untuk file gambar
+                'gambar' => $fileName,
+                'deskripsi' => $request->deskripsi,
+                'url' => $url,
             ]);
 
-            return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui!', 'profil' => $profil], 200);
+            return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui!'], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
-        
     }
 
     public function destroy() // hapus semua data di tabel
