@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('profil', function (Blueprint $table) {
             $table->id();
             $table->text('gambar');
-            $table->text('url');
+            $table->string('url');
             $table->text('deskripsi');
             $table->timestamps();
         });
