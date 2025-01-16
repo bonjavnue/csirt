@@ -122,7 +122,7 @@
                 if (data.gambar) {
                     // Jika ada gambar, buat pratinjau
                     const imagePreview = document.getElementById('previewImage');
-                            imagePreview.src = `{{ asset('storage/img/profil') }}/${data.gambar}`;
+                            imagePreview.src = `{{ asset('/img/profil') }}/${data.gambar}`;
                             imagePreview.alt = "Gambar Profil";
                     document.getElementById('previewImage').textContent = 'Gambar belum tersedia.';
                 }

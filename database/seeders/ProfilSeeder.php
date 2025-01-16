@@ -15,9 +15,9 @@ class ProfilSeeder extends Seeder
     {
         
         // Nama file gambar default
-        $fileName = 'gedung.png'; // Nama file gambar yang sudah ada di storage/public/img/profil
+        $fileName = 'b1765bc42105114b475815f121fc5997.png'; // Nama file gambar yang sudah ada di storage/public/img/profil
         $folderPath = 'img/profil/'; // Path folder di dalam storage
-        $url = asset('storage/' . $folderPath . $fileName); // URL gambar
+        $url = asset($folderPath . $fileName); // URL gambar
 
         // Masukkan data ke tabel 'profils'
         DB::table('profil')->insert([
