@@ -47,6 +47,30 @@ Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.stor
 Route::put('/layanan/{id}', [LayananController::class, 'update'])->name('layanan.update');
 Route::delete('/layanan/{id}', [LayananController::class, 'delete'])->name('layanan.delete');
 
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/about', function () {  
+    return view('about');  
+});
+
+Route::get('/services', function () {  
+    return view('layanan');  
+});
+
+Route::get('/info', function () {  
+    return view('informasi');  
+});
+
+Route::get('/report', function () {  
+    return view('aduan');  
+});
+
+Route::get('/news', function () {  
+    return view('detail-berita');  
+});
+
 // // group untuk admin
 // Route::middleware(['auth', 'admin'])->group(function () {
 
