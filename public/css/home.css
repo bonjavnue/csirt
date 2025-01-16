@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    overflow-x: hidden;
+}
+
+#brand {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.main {
+    background-image: linear-gradient(#26256C, #26256C, #B02233);
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.visimisi {
+    background-color: #F6FBFF;
+    padding: 100px;
+    padding-top: 50px;
+}
+
+.profil {
+    padding: 100px;
+    padding-bottom: 200px;
+}
+
+.wavy { 
+    animation: move 25s linear infinite; /* Animation properties */  
+    height: 20%;
+}  
+
+.wavy-line { 
+    animation: move 20s linear infinite; /* Animation properties */  
+    height: 20%;
+}  
+
+@keyframes move {  
+    0% {  
+        transform: translateX(-50%); /* Start off-screen to the left */  
+    }  
+    100% {  
+        transform: translateX(0%); /* Move to the right off-screen */  
+    }  
+}
+
+.news {
+    color: white;
+    box-shadow: 0 0 10px #4A48D2;
+    height: 300px;
+    background-color: #26256C;
+}
+
+.hero-arrow {
+    width: 10px;
+}
+
+.about-btn {
+    background-color: #26256C;
+    transition-duration: 100ms;
+}
+
+.about-btn:hover {
+    background-color: #4A48D2;
+    transition-duration: 100ms;
+}
+
+.danger {
+    color: #B02233;
+}
+
+.map {
+    height: 500px;
+}
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
