@@ -16,7 +16,7 @@
     </div>
     <a data-bs-toggle="collapse" href="#informasi" role="button" aria-expanded="false" aria-controls="informasi">Informasi <i class="fas fa-chevron-right float-end"></i></a>
     <div class="collapse" id="informasi">
-        <a class="dropdown-item" href="#acara">Acara</a>
+        <a class="dropdown-item" href="{{ route('layanan.show') }}">Jenis Layanan</a>
         <a class="dropdown-item" href="#galeri">Galeri</a>
         <a class="dropdown-item" href="#berita">Berita</a>
     </div>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\VisiController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\AcaraController;
+use App\Http\Controllers\GaleriController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,6 +48,15 @@ Route::prefix('admin/layanan')->group(function () {
     Route::put('/{id}/update', [LayananController::class, 'update'])->name('layanan.update');
     Route::delete('/{id}/delete', [LayananController::class, 'delete'])->name('layanan.delete');
 });
+
+Route::prefix('admin/acara')->group(function () {
+    Route::get('', [AcaraController::class, 'show'])->name('acara.show');
+    Route::post('', [AcaraController::class, 'store'])->name('acara.store');
+    Route::put('/{id}/update', [AcaraController::class, 'update'])->name('acara.update');
+    Route::delete('/{id}/delete', [AcaraController::class, 'delete'])->name('acara.delete');
+});
+
+Route::resource('galeri', GaleriController::class);
 
 Route::get('/admin/kontak', function () {
     return view('admin.kontak');
