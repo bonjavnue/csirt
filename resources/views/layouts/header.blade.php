@@ -4,8 +4,9 @@
         <span class="mx-2">|</span>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#">Tentang Kami</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $currentView }}</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <strong>{{ $currentView ?? ucfirst(Request::segment(2)) }}</strong>
+                </li>
             </ol>
         </nav>
     </div>

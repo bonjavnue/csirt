@@ -20,32 +20,39 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin/profil', function (){
-    return view('admin.profil');
-})->name('admin.profil');
-
 // route untuk CRUD profil oleh admin
-Route::prefix('admin')->group(function () {
-    Route::get('/admin/profil/new', [ProfilController::class, 'getProfil'])->name('profil.get');
-    Route::get('/admin/profil/show', [ProfilController::class, 'showProfil'])->name('profil.show');
-    Route::post('/admin/profil', [ProfilController::class, 'store'])->name('profil.store');
-    Route::post('/admin/profil/update', [ProfilController::class, 'update'])->name('profil.update');
-    Route::delete('/admin/profil/delete', [ProfilController::class, 'destroy'])->name('profil.delete');
+Route::prefix('admin/profil')->group(function () {
+    Route::get('/new', [ProfilController::class, 'getProfil'])->name('profil.get');
+    Route::get('', [ProfilController::class, 'showProfil'])->name('profil.show');
+    Route::post('/store', [ProfilController::class, 'store'])->name('profil.store');
+    Route::post('/update', [ProfilController::class, 'update'])->name('profil.update');
+    Route::delete('/delete', [ProfilController::class, 'destroy'])->name('profil.delete');
 });
 
+// route untuk CRUD visi misi oleh admin
+Route::prefix('admin/visi-misi')->group(function () {
+    Route::get('', [VisiController::class, 'show'])->name('visi.show');
+    Route::post('/store', [VisiController::class, 'store'])->name('visi.store');
+    Route::put('/{id}/visi/update', [VisiController::class, 'updateVisi'])->name('visi.updateVisi');
+    Route::put('/{id}/misi/update', [VisiController::class, 'updateMisi'])->name('visi.updateMisi');
+    Route::delete('/{id}/visi/delete', [VisiController::class, 'deleteVisi'])->name('visi.deleteVisi');
+    Route::delete('/{id}/misi/delete', [VisiController::class, 'deleteMisi'])->name('visi.deleteMisi');
+});
 
-Route::get('/visi-misi', [VisiController::class, 'show'])->name('visi.show');
-Route::post('/visi-misi', [VisiController::class, 'store'])->name('visi.store');
-// Route::get('/visi-misi/latest', [VisiController::class, 'getLatest'])->name('visi.latest');
-Route::put('/visi-misi/{id}/visi', [VisiController::class, 'updateVisi'])->name('visi.updateVisi');
-Route::put('/visi-misi/{id}/misi', [VisiController::class, 'updateMisi'])->name('visi.updateMisi');
-Route::delete('/visi-misi/{id}/visi', [VisiController::class, 'deleteVisi'])->name('visi.deleteVisi');
-Route::delete('/visi-misi/{id}/misi', [VisiController::class, 'deleteMisi'])->name('visi.deleteMisi');
+// route untuk CRUD layanan oleh admin
+Route::prefix('admin/layanan')->group(function () {
+    Route::get('', [LayananController::class, 'show'])->name('layanan.show');
+    Route::post('/store', [LayananController::class, 'store'])->name('layanan.store');
+    Route::put('/{id}/update', [LayananController::class, 'update'])->name('layanan.update');
+    Route::delete('/{id}/delete', [LayananController::class, 'delete'])->name('layanan.delete');
+});
 
-Route::get('/layanan', [LayananController::class, 'show'])->name('layanan.show');
-Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
-Route::put('/layanan/{id}', [LayananController::class, 'update'])->name('layanan.update');
-Route::delete('/layanan/{id}', [LayananController::class, 'delete'])->name('layanan.delete');
+Route::get('/admin/kontak', function () {
+    return view('admin.kontak');
+})->name('kontak.show');
+
+
+
 
 Route::get('/', function () {
     return view('home');
